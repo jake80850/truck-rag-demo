@@ -1,0 +1,386 @@
+/* =========================================================
+   TELO-ish LIGHT THEME for Streamlit
+   Inspired by telotrucks.com: white canvas, dark green header, bright green CTAs
+   ========================================================= */
+
+   :root{
+    /* TELO-ish palette */
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface2: #f7f8f7;
+    --ink: #1f2a26;         /* dark green/charcoal */
+    --muted: rgba(31,42,38,0.65);
+    --border: rgba(31,42,38,0.12);
+  
+    --brand-dark: #21332e;  /* header bar */
+    --brand-green: #4fa24a; /* CTA button green */
+    --brand-green2: #3f8f3b;
+  
+    --radius: 16px;
+    --shadow: 0 14px 45px rgba(0,0,0,0.10);
+  }
+  
+  /* App background + typography */
+  html, body, [data-testid="stAppViewContainer"]{
+    background: var(--bg) !important;
+    color: var(--ink) !important;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji" !important;
+  }
+  
+  /* Make content feel like a marketing page */
+  .block-container{
+    max-width: 980px !important;
+    padding-top: 3.2rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  /* Hide Streamlit default header area */
+  header[data-testid="stHeader"]{
+    background: transparent !important;
+  }
+  
+  /* Title styling: big, bold like “Hello TELO” */
+  h1{
+    font-weight: 900 !important;
+    letter-spacing: -0.03em !important;
+    font-size: 3.2rem !important;
+    line-height: 1.02 !important;
+    color: var(--ink) !important;
+    margin-bottom: 0.35rem !important;
+  }
+  
+  /* Any helper text / captions */
+  p, li, span{
+    color: var(--ink) !important;
+  }
+  
+  /* Subheader / markdown muted */
+  [data-testid="stMarkdownContainer"] p{
+    color: var(--muted) !important;
+    font-size: 1.05rem !important;
+  }
+  
+  /* Sidebar as TELO dark header vibe (we’ll use sidebar like a nav bar) */
+  [data-testid="stSidebar"]{
+    background: var(--brand-dark) !important;
+    border-right: 0 !important;
+  }
+  [data-testid="stSidebar"] *{
+    color: rgba(255,255,255,0.9) !important;
+  }
+  
+  /* Make sidebar padding feel like a top nav panel */
+  [data-testid="stSidebarContent"]{
+    padding-top: 1.2rem !important;
+  }
+  
+  /* Chat messages styled like clean cards */
+  [data-testid="stChatMessage"]{
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: 14px 16px !important;
+    box-shadow: var(--shadow);
+  }
+  
+  /* Slight contrast between user + assistant */
+  [data-testid="stChatMessage"][data-role="user"]{
+    background: var(--surface2) !important;
+  }
+  [data-testid="stChatMessage"][data-role="assistant"]{
+    background: var(--surface) !important;
+  }
+  
+  /* Chat message text */
+  [data-testid="stChatMessage"] p{
+    color: var(--ink) !important;
+    font-size: 1.05rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Chat input: clean rounded field */
+  [data-testid="stChatInput"]{
+    background: #ffffff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.10) !important;
+  }
+  [data-testid="stChatInput"] textarea{
+    color: var(--ink) !important;
+    font-size: 1.05rem !important;
+  }
+  [data-testid="stChatInput"] textarea::placeholder{
+    color: rgba(31,42,38,0.40) !important;
+  }
+  
+  /* Primary buttons = TELO green CTA */
+  .stButton button{
+    background: var(--brand-green) !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.02em !important;
+    padding: 0.7rem 1.2rem !important;
+    box-shadow: 0 12px 30px rgba(79,162,74,0.30) !important;
+    transition: transform 0.08s ease, filter 0.15s ease;
+  }
+  .stButton button:hover{
+    background: var(--brand-green2) !important;
+    filter: brightness(1.02);
+    transform: translateY(-1px);
+  }
+  .stButton button:active{
+    transform: translateY(0px);
+  }
+  
+  /* Links */
+  a{
+    color: var(--brand-green2) !important;
+  }
+  
+  /* Code blocks */
+  code, pre{
+    background: #f4f6f4 !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    color: var(--ink) !important;
+  }
+  /* ===== FIX CHAT INPUT VISIBILITY (Safari + Streamlit) ===== */
+
+/* the whole input container */
+[data-testid="stChatInput"]{
+  background: #ffffff !important;
+  border: 1px solid rgba(31,42,38,0.18) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.10) !important;
+  overflow: hidden !important;
+}
+
+/* the internal wrapper (Streamlit sometimes uses this) */
+[data-testid="stChatInput"] > div{
+  background: #ffffff !important;
+}
+
+/* the textarea itself */
+[data-testid="stChatInput"] textarea{
+  background: #ffffff !important;
+  color: #1f2a26 !important;
+  caret-color: #1f2a26 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.4 !important;
+  padding: 0.9rem 1.1rem !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* placeholder */
+[data-testid="stChatInput"] textarea::placeholder{
+  color: rgba(31,42,38,0.45) !important;
+  opacity: 1 !important;
+}
+
+/* sometimes Streamlit adds a "shadow" input or overlay */
+[data-testid="stChatInput"] textarea:focus{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* send button container */
+[data-testid="stChatInput"] button{
+  background: #4fa24a !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  margin: 0.35rem 0.4rem 0.35rem 0 !important;
+}
+
+/* send icon */
+[data-testid="stChatInput"] button svg{
+  fill: #ffffff !important;
+}
+/* ===== Hide Streamlit chrome + sidebar ===== */
+[data-testid="stSidebar"] { display: none !important; }
+section[data-testid="stSidebar"] { display: none !important; }
+
+/* top-right menu / deploy / footer */
+#MainMenu { visibility: hidden !important; }
+header[data-testid="stHeader"] { visibility: hidden !important; height: 0 !important; }
+[data-testid="stToolbar"] { display: none !important; }
+footer { visibility: hidden !important; }
+
+/* remove extra left padding Streamlit adds when sidebar exists */
+.block-container { padding-left: 2.2rem !important; padding-right: 2.2rem !important; }
+
+/* ===== Remove Streamlit UI junk ===== */
+
+/* sidebar */
+[data-testid="stSidebar"] { display: none !important; }
+
+/* top menu / deploy */
+#MainMenu { visibility: hidden; }
+header { visibility: hidden; }
+footer { visibility: hidden; }
+
+/* remove extra spacing */
+.block-container {
+  padding-top: 2rem !important;
+}
+
+/* ===== TELO LOGO ONLY ===== */
+
+.telo-logo-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 30px auto;
+  padding: 0 20px;
+}
+
+.telo-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* ===== OPTIONAL: nicer page feel ===== */
+
+body {
+  background: #0b1216 !important;
+}
+
+/* Title styling */
+h1 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Chat bubbles */
+[data-testid="stChatMessage"] {
+  border-radius: 12px;
+}
+
+/* Input box */
+[data-testid="stChatInput"] textarea {
+  border-radius: 12px !important;
+}
+
+
+.telo-logo-container svg{
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* ===== FINAL CHAT INPUT FIX (kills Safari corner artifacts) ===== */
+[data-testid="stChatInput"]{
+  background: #ffffff !important;
+  border: 1px solid rgba(31,42,38,0.16) !important;
+  border-radius: 18px !important;          /* avoid 999px + overflow artifacts */
+  box-shadow: 0 16px 50px rgba(0,0,0,0.10) !important;
+  overflow: visible !important;            /* key: stop clipping artifacts */
+}
+
+/* BaseWeb textarea wrapper (Streamlit uses this) */
+[data-testid="stChatInput"] div[data-baseweb="textarea"]{
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 18px !important;
+}
+
+/* The internal element that often draws the weird corners */
+[data-testid="stChatInput"] div[data-baseweb="textarea"] > div{
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 18px !important;
+}
+
+/* Actual textarea */
+[data-testid="stChatInput"] textarea{
+  background: #ffffff !important;
+  color: #1f2a26 !important;
+  caret-color: #1f2a26 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 18px !important;
+  -webkit-appearance: none !important;
+}
+
+/* Remove any focus ring / outline layer */
+[data-testid="stChatInput"] textarea:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Send button */
+[data-testid="stChatInput"] button{
+  background: #4fa24a !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stChatInput"] button svg{
+  fill: #ffffff !important;
+}
+
+
+/* ===== FINAL CHAT INPUT FIX (kills Safari corner artifacts) ===== */
+[data-testid="stChatInput"]{
+  background: #ffffff !important;
+  border: 1px solid rgba(31,42,38,0.16) !important;
+  border-radius: 18px !important;          /* avoid 999px + overflow artifacts */
+  box-shadow: 0 16px 50px rgba(0,0,0,0.10) !important;
+  overflow: visible !important;            /* key: stop clipping artifacts */
+}
+
+/* BaseWeb textarea wrapper (Streamlit uses this) */
+[data-testid="stChatInput"] div[data-baseweb="textarea"]{
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 18px !important;
+}
+
+/* The internal element that often draws the weird corners */
+[data-testid="stChatInput"] div[data-baseweb="textarea"] > div{
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 18px !important;
+}
+
+/* Actual textarea */
+[data-testid="stChatInput"] textarea{
+  background: #ffffff !important;
+  color: #1f2a26 !important;
+  caret-color: #1f2a26 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 18px !important;
+  -webkit-appearance: none !important;
+}
+
+/* Remove any focus ring / outline layer */
+[data-testid="stChatInput"] textarea:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Send button */
+[data-testid="stChatInput"] button{
+  background: #4fa24a !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stChatInput"] button svg{
+  fill: #ffffff !important;
+}
+
